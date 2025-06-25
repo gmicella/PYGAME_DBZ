@@ -1,7 +1,9 @@
 import pygame
-import forms.menu as menu
-import variables as var
-import auxiliares as aux
+import modulos.formularios.menu as menu
+import modulos.formularios.opciones as opciones
+import modulos.variables as var
+import modulos.auxiliares_menu as aux_menu
+import modulos.auxiliares_opciones as aux_opciones
 
 
 def jugar_dragon_ball():
@@ -10,10 +12,11 @@ def jugar_dragon_ball():
     pantalla = pygame.display.set_mode(var.DIMENSION_PANTALLA)
     pygame.display.set_caption(var.TITULO_JUEGO)
 
-    fondo_original = pygame.image.load(var.IMAGEN_MENU)
-    fondo_menu = pygame.transform.scale(fondo_original, var.DIMENSION_PANTALLA)
+    imagen_fondo = pygame.image.load(var.IMAGEN_MENU)
+    imagen_fondo = pygame.transform.scale(imagen_fondo, var.DIMENSION_PANTALLA)
 
-    pygame.mixer.music.load(var.MUSICA_MENU)
+    musica_actual = var.MUSICA_MENU
+    pygame.mixer.music.load(musica_actual)
     pygame.mixer.music.play(-1)
     pygame.mixer.music.set_volume(0.4)
 
@@ -35,9 +38,20 @@ def jugar_dragon_ball():
         
         cola_eventos = pygame.event.get()
         reloj.tick(var.FPS)
+        pantalla.blit(imagen_fondo, (0, 0))
 
         if form_actual == "menu":
+            aux_menu.mostrar_encabezado(var.TITULO_JUEGO, var.TEXTOS_MENU_PRINCIPAL, pantalla, fuente_titulo, fuente_menu, var.colores)
+            aux_menu.mostrar_opciones_juego(pantalla, fuente_opciones, var.TEXTOS_MENU_PRINCIPAL, var.colores)
             form_actual = menu.mostrar_menu(pantalla, cola_eventos)
+
+        elif form_actual == "opciones":
+            imagen_fondo = aux_opciones.cambiar_fondo_pantalla_opciones()
+            aux_opciones.mostrar_encabezado_opciones(var.TITULO_JUEGO, var.TEXTOS_OPCIONES, pantalla, fuente_titulo, fuente_menu, var.colores)
+            aux_opciones.mostrar_opciones(pantalla, fuente_opciones, var.TEXTOS_OPCIONES, var.colores)
+            musica_actual = aux_opciones.musica_pantalla_opciones(musica_actual)
+            form_actual = opciones.mostrar_opciones(pantalla, cola_eventos)
+
 
 
         elif form_actual == "salir":
@@ -45,21 +59,11 @@ def jugar_dragon_ball():
 
         # ================================= 2) ACTUALIZACIÓN DE LÓGICA DEL JUEG0 =============================================================
 
-
-
         # ================================= 3) DIBUJO EN PANTALLA ===========================================================================
-
-        pantalla.blit(fondo_menu, (0, 0))
-
-        aux.mostrar_encabezado(var.TITULO_JUEGO, var.TEXTOS_MENU_PRINCIPAL, pantalla, fuente_titulo, fuente_menu, var.colores)
-        aux.mostrar_opciones_juego(pantalla, fuente_opciones, var.TEXTOS_MENU_PRINCIPAL, var.colores)
-
 
         # ================================= 4) ACTUALIZACIÓN DE LA PANTALLA =================================================================
         pygame.display.flip()
 
-        # ================================= 5) CONTROL DE VELOCIDAD EN FPS ==================================================================
-        
 
     # Cierra todos los módulos activos de Pygame y libera recursos (termina correctamente el programa).
     pygame.quit()

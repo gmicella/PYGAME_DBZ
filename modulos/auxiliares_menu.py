@@ -1,5 +1,5 @@
 import pygame
-import variables as var
+
 
 def renderizar_texto(texto: str, fuente: pygame.font, color: dict[tuple], superficie: pygame.Surface, eje_x: int, eje_y: int):
     """
@@ -44,7 +44,7 @@ def mostrar_opciones_juego(pantalla: pygame.Surface, fuente_opciones: pygame.fon
     coordenadas = [
         (590, 350),  # JUGAR 
         (570, 420),  # OPCIONES 
-        (570, 490),  # RANKING 
+        (580, 490),  # RANKING 
         (600, 560)   # SALIR 
     ]
 
