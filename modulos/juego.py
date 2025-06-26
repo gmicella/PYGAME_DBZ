@@ -1,4 +1,6 @@
 import pygame
+import sys
+import formularios.form_manager as form_manager
 import modulos.formularios.menu as menu
 import modulos.formularios.opciones as opciones
 import modulos.variables as var
@@ -8,9 +10,18 @@ import modulos.auxiliares_opciones as aux_opciones
 
 def jugar_dragon_ball():
 
-    # Crea la ventana del juego con las dimensiones y el título.
+    pygame.init()
+
     pantalla = pygame.display.set_mode(var.DIMENSION_PANTALLA)
     pygame.display.set_caption(var.TITULO_JUEGO)
+    ejecutando = True
+    reloj = pygame.time.Clock()
+    datos_juego = {
+        "puntaje": 0,
+        "nombre": "PLAYER",
+        "volumen_musica": 100,
+        "tiempo_finalizado": None
+    }
 
     imagen_fondo = pygame.image.load(var.IMAGEN_MENU)
     imagen_fondo = pygame.transform.scale(imagen_fondo, var.DIMENSION_PANTALLA)
@@ -24,19 +35,21 @@ def jugar_dragon_ball():
     fuente_menu = pygame.font.Font(var.FUENTE_TITULO_JUEGO, 45)
     fuente_opciones = pygame.font.Font(var.FUENTE_TITULO_JUEGO, 40)
 
-    # Crea un reloj interno, para controlar el ritmo del juego (cuántas veces por segundo se repite el bucle principal).
-    reloj = pygame.time.Clock()
-
-    ejecutando = True
-
     form_actual = "menu"
     bandera_juego = False
 
+
+    forms = form_manager.crear_form_manager(pantalla, datos_juego)
+
     while ejecutando:
-        
-        # ================================= 1) GESTIÓN DE EVENTOS ============================================================================
-        
+                
         cola_eventos = pygame.event.get()
+        
+        for evento in cola_eventos:
+            if evento.type == pygame.QUIT:
+                ejcutando = False
+
+
         reloj.tick(var.FPS)
         pantalla.blit(imagen_fondo, (0, 0))
 
@@ -67,3 +80,4 @@ def jugar_dragon_ball():
 
     # Cierra todos los módulos activos de Pygame y libera recursos (termina correctamente el programa).
     pygame.quit()
+    sys.exit()
