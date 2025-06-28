@@ -13,9 +13,6 @@ TITULO_JUEGO = 'DRAGON BALL Z TCG'
 FPS = 60
 
 
-
-FUENTE_ALAGARD = './assets/fonts/alagard.ttf'
-RUTA_MUSICA = './assets/sound/music.ogg'
 CANTIDAD_VIDAS = 3
 
 RUTA_ICONO = './assets_Dragon_Ball_TCG/img/icons/Z_star.png'

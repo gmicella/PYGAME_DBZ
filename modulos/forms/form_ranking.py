@@ -50,17 +50,17 @@ def iniciar_ranking(dict_form_datos: dict):
         
         # numero
         dict_form_datos['pantalla_ranking'].append(
-            Label(x=var.DIMENSION_PANTALLA[0]//2 - 220, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{indice_fila + 1}', screen=dict_form_datos.get('pantalla'), font_path=var.FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
+            Label(x=var.DIMENSION_PANTALLA[0]//2 - 220, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{indice_fila + 1}', screen=dict_form_datos.get('pantalla'), font_path=var.RUTA_FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
         )
         
         # nombre
         dict_form_datos['pantalla_ranking'].append(
-            Label(x=var.DIMENSION_PANTALLA[0]//2, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{fila[0]}', screen=dict_form_datos.get('pantalla'), font_path=var.FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
+            Label(x=var.DIMENSION_PANTALLA[0]//2, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{fila[0]}', screen=dict_form_datos.get('pantalla'), font_path=var.RUTA_FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
         )
         
         # puntaje
         dict_form_datos['pantalla_ranking'].append(
-            Label(x=var.DIMENSION_PANTALLA[0]//2 + 220, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{fila[1]}', screen=dict_form_datos.get('pantalla'), font_path=var.FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
+            Label(x=var.DIMENSION_PANTALLA[0]//2 + 220, y=var.DIMENSION_PANTALLA[1]//2.9+indice_fila*31,text=f'{fila[1]}', screen=dict_form_datos.get('pantalla'), font_path=var.RUTA_FUENTE_ALAGARD, color=var.COLOR_NARANJA, font_size=40)
         )
     
     
